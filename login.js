@@ -121,3 +121,67 @@ $("#signup").submit(function() {
     return false;
 });
 }
+
+
+
+function studentLogin() {
+    $("#login").submit(function() {
+        var data = {};
+    
+        // Iterate through each input field in the login form
+        $("#login input").each(function(k, v) {
+        if (!$(v).val().length) {
+            // If the field is empty, display a warning message
+            $('.alert span').html('Please enter <strong>' + $(v).attr('name') + '</strong> !');
+            $('.alert').removeClass('hidden');
+            return false;
+        }
+        data[$(v).attr('name')] = $(v).val();
+        });
+    
+        $.ajax({
+        url: 'php/process_login.php', // Backend URL to handle the login process
+        type: 'post',
+        data: data, // Data to be sent, containing the form field data
+        dataType: 'json',
+        success: function(r) {
+            console.log(r);
+    
+            // Handle the response data returned from the server
+            switch (r.error) {
+            case 'empty':
+                $('.alert span').html('Please fill all the credentials!');
+                $('.alert').removeClass('hidden');
+                break;
+            case 'not_found':
+                $('.alert span').html('No such user found! Try signing up.');
+                $('.alert').removeClass('hidden');
+                $("form#signup input[name=email]").val($("form#login input[name=email]").val());
+                $("form#signup input[name=email]").focus();
+                break;
+            case 'incorrect':
+                $('.alert span').html('Incorrect Password!');
+                $('.alert').removeClass('hidden');
+                $('.alert').removeClass('alert-warning');
+                $('.alert').addClass('alert-danger');
+                break;
+            case 'none':
+                $('.alert span').html('<img src="img/loading.gif"> <Strong>Welcome</strong>, you are being logged in ');
+                $('.alert').removeClass('hidden');
+                $('.alert').removeClass('alert-warning');
+                $('.alert').removeClass('alert-danger');
+                $('.alert').addClass('alert-success');
+                window.location = "";
+                break;
+            }
+        }
+        });
+    
+        return false;
+    });
+    }
+    
+$(document).ready(function () {
+    studentSignup();
+    studentLogin();
+});
