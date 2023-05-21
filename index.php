@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Added heading "1s Attendance System" here -->
+  <h1 class="text-center mt-4">1sAttendance System</h1>
+  
   <title>Login</title> 
   <link rel="stylesheet" type="text/css" href="CSS/styles.css">
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="JS/main.js"></script>
+  
 </head>
 <body>
   <div class="container">
@@ -41,6 +45,9 @@
         </div>
       </div>
     </div>
+  </div>
+  
+  <div class="footer text-center mt-4">
   </div>
 </body>
 </html>

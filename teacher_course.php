@@ -5,6 +5,11 @@ $conn = connectToDatabase();
 
 $sql = "SELECT id, course_name FROM courses WHERE teacher_id = '{$_SESSION['teacher_id']}'";
 $result = mysqli_query($conn, $sql);
+
+// add these lines
+$sql_attendance = "SELECT attendance.status, attendance.date, courses.id, courses.course_name FROM attendance INNER JOIN courses ON attendance.course_id = courses.id WHERE courses.teacher_id = '{$_SESSION['teacher_id']}'";
+$result_attendance = mysqli_query($conn, $sql_attendance);
+
 $result_for_select = mysqli_query($conn, $sql); // second result set for select options
 ?>
 <!DOCTYPE html>
@@ -16,6 +21,7 @@ $result_for_select = mysqli_query($conn, $sql); // second result set for select 
     <script src="JS/main.js" defer></script>
 </head>
 <body>
+    <h1>Teacher Dashboard</h1>
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-3">
@@ -116,13 +122,13 @@ $result_for_select = mysqli_query($conn, $sql); // second result set for select 
                                     <th scope="col">Date</th>
                                 </tr>
                             </thead>
-                            <tbody></tbody>
+							<tbody>               
+                            </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </body>
 </html>

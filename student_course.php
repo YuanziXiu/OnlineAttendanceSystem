@@ -24,6 +24,7 @@ $result_not_registered_for_select = mysqli_query($conn, $sql_not_registered);
 	<script src="JS/main.js"></script>
 </head>
 <body>
+<h1>Student Dashboard</h1>
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-3">
@@ -129,6 +130,5 @@ $result_not_registered_for_select = mysqli_query($conn, $sql_not_registered);
             </div>
         </div>
     </div>
-
 </body>
 </html>
